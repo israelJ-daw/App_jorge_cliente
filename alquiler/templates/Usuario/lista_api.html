@@ -1,0 +1,24 @@
+{% extends "principal.html" %}
+{% block contenido %}
+
+<h1 class="display-3">Lista Usuario</h1>
+
+<div class="row">
+    
+    {% for usuario in usuarios %}
+        <div class="col-sm-4 mb-2">
+         
+            <p><strong>Nombre:</strong> {{ usuario.nombre }}</p>
+            <p><strong>Email:</strong> {{ usuario.email }}</p>
+            <p><strong>Teléfono:</strong> {{ usuario.telefono }}</p>
+            <p><strong>Fecha de Registro:</strong> {{ usuario.fecha_registro|date:"d-m-Y H:i" }}</p>
+
+        </div>   
+    
+    {%empty%}
+    <h1>Lo sentimos no hay usuarios<7h1>    
+    {% endfor %}
+    
+</div>    
+
+{% endblock%}
