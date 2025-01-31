@@ -16,13 +16,19 @@
 {% endif %}
 
   {%if not request.user.is_authenticated%}
-s  {%endif%}
+ {%endif%}
 
   {% if request.user.is_authenticated %}
   <form method="POST" action="{% url 'logout' %}">
     {% csrf_token %}
     <button type="submit" class="btn btn-outline-warning">Desconectarse</button>
 </form>{% endif %}
+
+
+<li><a href="{% url 'usuarios_lista_api' %}">Usuario lista api</a></li>
+
+<li><a href="{% url 'usuarios_lista_api2' %}">Usuario lista api 2</a></li>
+
 
 </div>
 {% comment %}   

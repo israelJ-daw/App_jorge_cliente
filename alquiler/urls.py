@@ -7,5 +7,8 @@ urlpatterns = [
     #cliente
  
     path('usuarios_lista_api/', views.usuarios_lista_api, name='usuarios_lista_api'),
+
+    path('usuarios_lista_api2/', views.usuarios_lista_api2, name='usuarios_lista_api2'),
+
     
 ]

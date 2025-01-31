@@ -8,7 +8,13 @@ def index(request):
 
 
 
+
 def usuarios_lista_api(request):
     response = requests.get('https://IsraelJimenez.pythonanywhere.com/api/v1/usuarios')
     usuarios = response.json()
     return render(request, 'Usuario/lista_api.html', {"usuarios": usuarios})
+
+def usuarios_lista_api2(request):
+    response = requests.get('https://IsraelJimenez.pythonanywhere.com/api/v1/usuarios')
+    usuarios = response.json()
+    return render(request, 'Usuario/lista_api2.html', {"usuarios": usuarios})

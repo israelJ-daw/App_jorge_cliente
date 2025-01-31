@@ -1,0 +1,24 @@
+{% extends "principal.html" %}
+
+{% block contenido %}
+<h1 class="display-3">Lista de Usuarios</h1>
+
+<div class="row">
+    {% if usuarios %}
+        {% for usuario in usuarios %}
+            <div class="col-sm-4 mb-2">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ usuario.email }}</h5>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    {% else %}
+        <div class="col-12">
+            <p class="alert alert-info">Lo sentimos, no hay usuarios disponibles en este momento.</p>
+        </div>
+    {% endif %}
+</div>
+
+{% endblock %}

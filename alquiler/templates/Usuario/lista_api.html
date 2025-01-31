@@ -8,11 +8,9 @@
     {% for usuario in usuarios %}
         <div class="col-sm-4 mb-2">
          
-            <p><strong>Nombre:</strong> {{ usuario.nombre }}</p>
+          
             <p><strong>Email:</strong> {{ usuario.email }}</p>
-            <p><strong>Teléfono:</strong> {{ usuario.telefono }}</p>
-            <p><strong>Fecha de Registro:</strong> {{ usuario.fecha_registro|date:"d-m-Y H:i" }}</p>
-
+          
         </div>   
     
     {%empty%}
