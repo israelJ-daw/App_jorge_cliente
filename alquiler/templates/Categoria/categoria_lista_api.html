@@ -1,0 +1,31 @@
+{% extends "principal.html" %}
+
+{% block contenido %}
+<h1 class="display-3">Lista de Categorías</h1>
+
+<div class="row">
+    {% if categorias %}
+        {% for categoria in categorias %}
+            <div class="col-sm-4 mb-2">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ categoria.nombre }}</h5>
+                        <p class="card-text">{{ categoria.descripcion }}</p>
+                        <h6>Propiedades:</h6>
+                        <ul>
+                            {% for propiedad in categoria.propiedades %}
+                                <li>{{ propiedad.titulo }} - {{ propiedad.direccion }}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    {% else %}
+        <div class="col-12">
+            <p class="alert alert-info">Lo sentimos, no hay categorías disponibles en este momento.</p>
+        </div>
+    {% endif %}
+</div>
+
+{% endblock %}

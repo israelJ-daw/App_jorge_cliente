@@ -1,0 +1,26 @@
+{% extends "principal.html" %}
+
+{% block contenido %}
+<h1 class="display-3">Lista de Propiedades</h1>
+
+<div class="row">
+    {% if propiedades %}
+        {% for propiedad in propiedades %}
+            <div class="col-sm-4 mb-2">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ propiedad.titulo }}</h5> <!-- Usando 'titulo' en lugar de 'nombre' -->
+                        <p class="card-text">{{ propiedad.direccion }}</p> <!-- Usando 'direccion' en lugar de 'descripcion' -->
+                        <p class="card-text">Precio: {{ propiedad.precio_por_noche }}</p>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    {% else %}
+        <div class="col-12">
+            <p class="alert alert-info">Lo sentimos, no hay propiedades disponibles en este momento.</p>
+        </div>
+    {% endif %}
+</div>
+
+{% endblock %}
