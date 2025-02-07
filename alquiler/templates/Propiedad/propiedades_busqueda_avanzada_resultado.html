@@ -1,0 +1,24 @@
+{% extends 'principal.html' %}
+
+{% block contenido %}
+        <h1>Resultados de Búsqueda - Propiedades</h1>
+
+        {% if propiedades %}
+            <ul>
+                {% for propiedad in propiedades %}
+                    <li>
+                        <strong>Título:</strong> {{ propiedad.titulo }} <br>
+                        <strong>Dirección:</strong> {{ propiedad.direccion }} <br>
+                        <strong>Precio por noche:</strong> {{ propiedad.precio_por_noche }} € <br>
+                        <strong>Máx. Usuarios:</strong> {{ propiedad.max_usuarios }}
+                    </li>
+                    <hr>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>No se encontraron propiedades.</p>
+        {% endif %}
+
+        <a href="{% url 'propiedades_busqueda_avanzada' %}">Nueva Búsqueda</a>
+     
+{% endblock %}

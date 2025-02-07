@@ -1,0 +1,23 @@
+{% extends "principal.html" %}
+
+{% block contenido %}
+    <h1>Buscar Usuario</h1>
+
+    <!-- Formulario para buscar usuarios -->
+    <form id="busqueda-form" method="get" action="{% url 'usuarios_busqueda_simple' %}">
+        <label for="textoBusqueda">Buscar Usuario:</label>
+        <input type="text" id="textoBusqueda" name="textoBusqueda" class="form-control" placeholder="Escribe el nombre o correo del usuario" required>
+        <button type="submit" class="btn btn-primary">Buscar</button>
+    </form>
+
+    {% if usuarios_mostrar %}
+        <h2>Resultados de la Búsqueda:</h2>
+        <ul>
+            {% for usuario in usuarios_mostrar %}
+                <li>{{ usuario.nombre }} - {{ usuario.email }}</li>  <!-- Aquí mostramos el nombre y email -->
+            {% endfor %}
+        </ul>
+    {% elif formulario.errors %}
+        <p>No se encontraron usuarios.</p>  <!-- Si no hay resultados, mostramos un mensaje -->
+    {% endif %}
+{% endblock %}

@@ -23,6 +23,7 @@
     {% csrf_token %}
     <button type="submit" class="btn btn-outline-warning">Desconectarse</button>
 </form>{% endif %}
+<ul>
 
 <li><a href="{% url 'usuarios_lista_api' %}">Usuario lista api</a></li>
 
@@ -32,9 +33,17 @@
 
 <li><a href="{% url 'propiedades_lista_api' %}">Propiedad Lista Api</a></li>
 
+<li><a href="{% url 'usuarios_busqueda_simple' %}">Usuarios Búsqueda Simple</a></li>
 
+<li><a href="{% url 'usuarios_busqueda_avanzada' %}">Usuarios busqueda Avanzada</a></li>
 
+<li><a href="{% url 'categorias_busqueda_avanzada' %}">Categorias busqueda Avanzada</a></li>
 
+<li><a href="{% url 'servicios_extra_busqueda_avanzada' %}">Servicios Extra busqueda Avanzada</a></li>
+
+<li><a href="{% url 'propiedades_busqueda_avanzada' %}">Propiedades busqueda Avanzada</a></li>
+
+</ul>
 </div>
 {% comment %}   
     <h2>Listado de enlaces</h2>

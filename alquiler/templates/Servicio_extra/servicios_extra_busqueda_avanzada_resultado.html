@@ -1,0 +1,24 @@
+{% extends 'principal.html' %}
+
+{% block contenido %}
+        <h1>Resultados de Búsqueda - Servicios Extra</h1>
+
+        {% if servicios_extra %}
+            <ul>
+                {% for servicio in servicios_extra %}
+                    <li>
+                        <strong>Nombre:</strong> {{ servicio.nombre }} <br>
+                        <strong>Descripción:</strong> {{ servicio.descripcion }} <br>
+                        <strong>Precio:</strong> {{ servicio.precio }} € <br>
+                        <strong>Disponible:</strong> {{ servicio.disponible|yesno:"Sí,No" }}
+                    </li>
+                    <hr>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>No se encontraron servicios extra.</p>
+        {% endif %}
+
+        <a href="{% url 'servicios_extra_busqueda_avanzada' %}">Nueva Búsqueda</a>
+  
+{% endblock %}

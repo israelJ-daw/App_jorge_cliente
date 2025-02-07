@@ -1,0 +1,20 @@
+{% extends 'principal.html' %}
+
+{% block contenido %}
+    <h1>Buscar Usuarios (Búsqueda Avanzada)</h1>
+    <form method="get" action="{% url 'usuarios_busqueda_avanzada' %}">
+        {% csrf_token %}
+        {{ formulario.as_p }}  <!-- Renderiza los campos del formulario -->
+        <button type="submit" class="btn btn-primary">Buscar</button>
+    </form>
+
+    {% if formulario.errors %}
+        <div class="alert alert-danger">
+            <ul>
+                {% for error in formulario.errors %}
+                    <li>{{ error }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+    {% endif %}
+{% endblock %}
