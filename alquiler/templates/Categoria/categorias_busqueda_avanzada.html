@@ -24,4 +24,14 @@
             </ul>
         </div>
     {% endif %}
+
+    {% if errores %}
+        <div class="error">
+            <ul>
+                {% for error in errores %}
+                    <li>{{ error }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+    {% endif %}
 {% endblock %}

@@ -1,24 +1,24 @@
 {% extends 'principal.html' %}
 
 {% block contenido %}
-        <h1>Resultados de Búsqueda - Categorías</h1>
+    <h1>Resultados de Búsqueda - Categorías</h1>
 
-        {% if categorias %}
-            <ul>
-                {% for categoria in categorias %}
-                    <li>
-                        <strong>Nombre:</strong> {{ categoria.nombre }} <br>
-                        <strong>Descripción:</strong> {{ categoria.descripcion }} <br>
-                        <strong>Premium:</strong> {{ categoria.premiun|yesno:"Sí,No" }} <br>
-                        <strong>Principal:</strong> {{ categoria.principal|yesno:"Sí,No" }}
-                    </li>
-                    <hr>
-                {% endfor %}
-            </ul>
-        {% else %}
-            <p>No se encontraron categorías.</p>
-        {% endif %}
+    {% if categorias %}
+        <ul>
+            {% for categoria in categorias %}
+                <li>
+                    <strong>Nombre:</strong> {{ categoria.nombre }} <br>
+                    <strong>Descripción:</strong> {{ categoria.descripcion }} <br>
+                    <strong>Premium:</strong> {{ categoria.premiun|yesno:"Sí,No" }} <br>
+                    <strong>Principal:</strong> {{ categoria.principal|yesno:"Sí,No" }}
+                </li>
+                <hr>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No se encontraron categorías.</p>
+    {% endif %}
 
-        <a href="{% url 'categorias_busqueda_avanzada' %}">Nueva Búsqueda</a>
+    <a href="{% url 'categorias_busqueda_avanzada' %}">Nueva Búsqueda</a>
    
 {% endblock %}

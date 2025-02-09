@@ -206,17 +206,36 @@ class BusquedaAvanzadaUsuarioForm(forms.Form):
     fecha_registro_hasta = forms.DateField(required=False, label="Fecha Registro Hasta", widget=forms.SelectDateWidget)
 
 
+
 class BusquedaCategoriaForm(forms.Form):
     nombre = forms.CharField(required=False)
     premiun = forms.BooleanField(required=False)
     principal = forms.BooleanField(required=False)
+
+    def clean_nombre(self):
+        nombre = self.cleaned_data.get('nombre')
+        if nombre and len(nombre) < 3:
+            raise forms.ValidationError("El nombre debe tener al menos 3 caracteres.")
+        return nombre
 
 class BusquedaPropiedadForm(forms.Form):
     titulo = forms.CharField(required=False)
     precio_min = forms.IntegerField(required=False)
     max_usuarios = forms.IntegerField(required=False)
 
+    def clean_titulo(self):
+        titulo = self.cleaned_data.get('titulo')
+        if titulo and len(titulo) < 3:
+            raise forms.ValidationError("El título debe tener al menos 3 caracteres.")
+        return titulo
+
 class BusquedaServicioExtraForm(forms.Form):
     nombre = forms.CharField(required=False)
     precio_max = forms.IntegerField(required=False)
     disponible = forms.BooleanField(required=False)
+
+    def clean_nombre(self):
+        nombre = self.cleaned_data.get('nombre')
+        if nombre and len(nombre) < 3:
+            raise forms.ValidationError("El nombre debe tener al menos 3 caracteres.")
+        return nombre

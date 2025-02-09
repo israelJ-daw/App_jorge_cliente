@@ -34,7 +34,7 @@ def usuarios_busqueda_simple(request):
 
     if formulario.is_valid():
         response = requests.get(
-            'http://0.0.0.0:8080/api/v1/usuarios/busqueda_simple/',  # Cambia esta URL si es necesario por la de pythonanywhere, yo lo hago en loocal pero seria ls siguiente: https://israeljimenez.pythonanywhere.com/api/v1/usuarios/busqueda_simple/ 
+            'http://IsraelJimenez.pythonanywhere.com/api/v1/usuarios/busqueda_simple/',  # Cambia esta URL si es necesario por la de pythonanywhere, yo lo hago en loocal pero seria ls siguiente: https://israeljimenez.pythonanywhere.com/api/v1/usuarios/busqueda_simple/ 
             params={'textoBusqueda': formulario.cleaned_data.get("textoBusqueda")}
         )
 
@@ -53,7 +53,7 @@ def usuarios_busqueda_avanzada(request):
 
     if request.GET and formulario.is_valid():  
         response = requests.get(
-            'http://0.0.0.0:8080/api/v1/usuarios/busqueda_avanzada/',  #cambiar ls url si es necesario por  https://israeljimenez.pythonanywhere.com/api/v1/usuarios/busqueda_avanzada/
+            'http://IsraelJimenez.pythonanywhere.com/api/v1/usuarios/busqueda_avanzada/',  #cambiar ls url si es necesario por  https://israeljimenez.pythonanywhere.com/api/v1/usuarios/busqueda_avanzada/
             params=formulario.cleaned_data
         )
 
@@ -62,18 +62,25 @@ def usuarios_busqueda_avanzada(request):
             return render(request, 'Usuario/usuarios_busqueda_avanzada_resultado.html', {'usuarios_mostrar': usuarios})
 
     return render(request, 'Usuario/usuarios_busqueda_avanzada.html', {'formulario': formulario})
+
+
+
 def categorias_busqueda_avanzada(request):
     formulario = BusquedaCategoriaForm(request.GET)
 
     if request.GET and formulario.is_valid():
         response = requests.get(
-            'http://0.0.0.0:8080/api/v1/categorias/busqueda_avanzada/',  
+            'http://IsraelJimenez.pythonanywhere.com/api/v1/categorias/busqueda_avanzada/',  
             params=formulario.cleaned_data
         )
 
         if response.status_code == 200:
             categorias = response.json()
             return render(request, 'Categoria/categorias_busqueda_avanzada_resultado.html', {'categorias': categorias})
+        else:
+            # Si la respuesta no es exitosa, mostrar errores de la API
+            errores = response.json()  # Asumimos que la API devuelve errores en formato JSON
+            return render(request, 'Categoria/categorias_busqueda_avanzada.html', {'formulario': formulario, 'errores': errores})
 
     return render(request, 'Categoria/categorias_busqueda_avanzada.html', {'formulario': formulario})
 
@@ -83,13 +90,17 @@ def propiedades_busqueda_avanzada(request):
 
     if request.GET and formulario.is_valid():
         response = requests.get(
-            'http://0.0.0.0:8080/api/v1/propiedades/busqueda_avanzada/',  
+            'http://IsraelJimenez.pythonanywhere.com/api/v1/propiedades/busqueda_avanzada/',  
             params=formulario.cleaned_data
         )
 
         if response.status_code == 200:
             propiedades = response.json()
             return render(request, 'Propiedad/propiedades_busqueda_avanzada_resultado.html', {'propiedades': propiedades})
+        else:
+            # Si la respuesta no es exitosa, mostrar errores de la API
+            errores = response.json()
+            return render(request, 'Propiedad/propiedades_busqueda_avanzada.html', {'formulario': formulario, 'errores': errores})
 
     return render(request, 'Propiedad/propiedades_busqueda_avanzada.html', {'formulario': formulario})
 
@@ -99,12 +110,15 @@ def servicios_extra_busqueda_avanzada(request):
 
     if request.GET and formulario.is_valid():
         response = requests.get(
-            'http://0.0.0.0:8080/api/v1/servicios_extra/busqueda_avanzada/',  
+            'http://IsraelJimenez.pythonanywhere.com/api/v1/servicios_extra/busqueda_avanzada/',  
             params=formulario.cleaned_data
         )
 
         if response.status_code == 200:
             servicios_extra = response.json()
             return render(request, 'Servicio_extra/servicios_extra_busqueda_avanzada_resultado.html', {'servicios_extra': servicios_extra})
+        else:
+            errores = response.json()
+            return render(request, 'Servicio_extra/servicios_extra_busqueda_avanzada.html', {'formulario': formulario, 'errores': errores})
 
     return render(request, 'Servicio_extra/servicios_extra_busqueda_avanzada.html', {'formulario': formulario})
